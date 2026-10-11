@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile README Generator</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --accent2: #1f6feb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  header {
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--panel);
+  }
+  header h1 { font-size: 18px; font-weight: 600; }
+  header span { color: var(--muted); font-size: 13px; }
+  main { flex: 1; display: flex; min-height: 0; }
+
+  /* ---------- Editor ---------- */
+  #editor {
+    width: 420px;
+    min-width: 340px;
+    overflow-y: auto;
+    padding: 16px;
+    border-right: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .section {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .section-header {
+    width: 100%;
+    padding: 10px 14px;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .section-header:hover { color: var(--accent); }
+  .section-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+  .collapsed .section-body { display: none; }
+  .arrow { transition: transform .2s; font-size: 11px; color: var(--muted); }
+  .collapsed .arrow { transform: rotate(-90deg); }
+
+  label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px; }
+  input[type="text"], textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 7px 10px;
+    font-size: 13px;
+    font-family: inherit;
+  }
+  input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 56px; }
+  .row { display: flex; gap: 10px; }
+  .row > div { flex: 1; }
+
+  .tech-group { display: flex; flex-direction: column; gap: 6px; }
+  .tech-group-title { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-top: 4px; }
+  .tech-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tech-item {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform .1s, border-color .1s;
+  }
+  .tech-item:hover { transform: scale(1.1); }
+  .tech-item.selected { border-color: var(--accent); background: #1f6feb33; }
+  .tech-item img { width: 20px; height: 20px; }
+
+  .toggle-row {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; padding: 4px 0;
+  }
+  .switch { position: relative; width: 36px; height: 20px; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider {
+    position: absolute; inset: 0; background: var(--border);
+    border-radius: 20px; cursor: pointer; transition: .2s;
+  }
+  .slider::before {
+    content: ""; position: absolute; width: 14px; height: 14px;
+    left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .2s;
+  }
+  .switch input:checked + .slider { background: var(--accent2); }
+  .switch input:checked + .slider::before { transform: translateX(16px); }
+
+  /* ---------- Preview ---------- */
+  #preview-pane { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  #toolbar {
+    display: flex; gap: 10px; align-items: center;
+    padding: 10px 16px; border-bottom: 1px solid var(--border);
+    background: var(--panel);
+  }
+  #toolbar .spacer { flex: 1; }
+  .tab-btn {
+    background: transparent; border: 1px solid var(--border); color: var(--muted);
+    padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px;
+  }
+  .tab-btn.active { color: var(--text); border-color: var(--accent); }
+  .btn {
+    background: var(--accent2); color: #fff; border: none;
+    padding: 7px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;
+  }
+  .btn:hover { background: #388bfd; }
+  .btn.secondary { background: var(--border); }
+  .btn.secondary:hover { background: #484f58; }
+
+  #preview { flex: 1; overflow-y: auto; padding: 24px; }
+  #markdown-source {
+    white-space: pre-wrap; word-break: break-word;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 12.5px; line-height: 1.6;
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px; color: var(--text);
+  }
+  #rendered { display: none; }
+  #rendered img { max-width: 100%; }
+  #rendered h1, #rendered h2, #rendered h3 { border-bottom: 1px solid var(--border); padding-bottom: .3em; margin: 16px 0 10px; }
+  #rendered a { color: var(--accent); text-decoration: none; }
+  #rendered code { background: #30363d55; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+
+  #toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: #238636; color: #fff; padding: 10px 20px; border-radius: 8px;
+    font-size: 13px; transition: transform .3s; z-index: 100;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
+</style>
+</head>
+<body>
+
+<header>
+  <span style="font-size:22px">🎨</span>
+  <h1>Profile README Generator</h1>
+  <span>— build your GitHub profile readme</span>
+</header>
+
+<main>
+  <!-- ============ EDITOR ============ -->
+  <div id="editor">
+
+    <div class="section" data-section="intro">
+      <button class="section-header">👋 Intro <span class="arrow">▼</span></button>
+      <div class="section-body">
+        <div>
+          <label>Name</label>
+          <input type="text" id="name" value="Luis">
+        </div>
+        <div>
+          <label>Tagline (shown under "Hi there")</label>
+          <input type="text" id="tagline" value="🇹🇱 From Timor Leste | 💻 Junior Full Stack Developer | 🌱 Always learning">
+        </div>
+        <div>
+          <label>🔭 I'm currently working on</label>
+          <input type="text" id="working" value="personal projects with JavaScript and Flask">
+        </div>
+        <div>
+          <label>🌱 I'm currently learning</label>
+          <input type="text" id="learning" value="TypeScript and React">
+        </div>
+        <div>
+          <label>⚡ Fun fact</label>
+          <input type="text" id="funfact" value="I love coding and exploring new tech!">
+        </div>
+      </div>
+    </div>
+
+    <div class="section" data-section="tech">
+      <button class="section-header">🛠️ Tech Stack <span class="arrow">▼</span></button>
+      <div class="section-body">
+        <div class="tech-group" id="tech-groups"></div>
+      </div>
+    </div>
+
+    <div class="section" data-section="socials">
+      <button class="section-header">🔗 Social Links <span class="arrow">▼</span></button>
+      <div class="section-body">
+        <div class="row">
+          <div><label>Email</label><input type="text" id="email" value="funhacker00@example.com"></div>
+          <div><label>LinkedIn</label><input type="text" id="linkedin" placeholder="linkedin.com/in/..."></div>
+        </div>
+        <div class="row">
+          <div><label>Twitter / X</label><input type="text" id="twitter" placeholder="@your_handle"></div>
+          <div><label>GitHub username</label><input type="text" id="github-user" value="FunHacker00"></div>
+        </div>
+        <div class="row">
+          <div><label>Discord ID</label><input type="text" id="discord" placeholder="123456789012345678"></div>
+          <div><label>WhatsApp (intl. format)</label><input type="text" id="whatsapp" placeholder="670123456789"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" data-section="stats">
+      <button class="section-header">📊 GitHub Stats <span class="arrow">▼</span></button>
+      <div class="section-body">
+        <div>
+          <label>GitHub username for stats</label>
+          <input type="text" id="stats-user" value="FunHacker00">
+        </div>
+        <div class="toggle-row"><span>Top Languages card</span><label class="switch"><input type="checkbox" id="st-langs" checked><span class="slider"></span></label></div>
+        <div class="toggle-row"><span>Streak card</span><label class="switch"><input type="checkbox" id="st-streak" checked><span class="slider"></span></label></div>
+        <div class="toggle-row"><span>Trophy card</span><label class="switch"><input type="checkbox" id="st-trophy" checked><span class="slider"></span></label></div>
+        <div class="toggle-row"><span>Activity graph</span><label class="switch"><input type="checkbox" id="st-activity" checked><span class="slider"></span></label></div>
+      </div>
+    </div>
+
+    <div class="section" data-section="extras">
+      <button class="section-header">✨ Extras <span class="arrow">▼</span></button>
+      <div class="section-body">
+        <div class="toggle-row"><span>Visitor counter badge</span><label class="switch"><input type="checkbox" id="ex-visitor" checked><span class="slider"></span></label></div>
+        <div class="toggle-row"><span>Typing SVG animation</span><label class="switch"><input type="checkbox" id="ex-typing" checked><span class="slider"></span></label></div>
+        <div class="toggle-row"><span>Snake animation (needs GitHub Action)</span><label class="switch"><input type="checkbox" id="ex-snake" checked><span class="slider"></span></label></div>
+        <div class="toggle-row"><span>Pacman contribution graph (needs Action)</span><label class="switch"><input type="checkbox" id="ex-pacman" checked><span class="slider"></span></label></div>
+        <div>
+          <label>Custom GIF / video URL (optional)</label>
+          <input type="text" id="ex-gif" placeholder="https://.../animation.gif">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ PREVIEW ============ -->
+  <div id="preview-pane">
+    <div id="toolbar">
+      <button class="tab-btn active" data-tab="rendered">Preview</button>
+      <button class="tab-btn" data-tab="raw">Markdown</button>
+      <div class="spacer"></div>
+      <button class="btn secondary" id="download-btn">⬇ Download</button>
+      <button class="btn" id="copy-btn">📋 Copy Markdown</button>
+    </div>
+    <div id="preview">
+      <div id="rendered"></div>
+      <pre id="markdown-source"></pre>
+    </div>
+  </div>
+</main>
+
+<div id="toast">Copied to clipboard!</div>
+
+<script>
+/* ================= DATA ================= */
+const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/";
+const SHIELDS = "https://img.shields.io/badge/";
+
+const TECH = {
+  "Languages": [
+    ["JavaScript", "javascript/javascript-original.svg"],
+    ["TypeScript", "typescript/typescript-original.svg"],
+    ["Python", "python/python-original.svg"],
+    ["Java", "java/java-original.svg"],
+    ["C", "c/c-original.svg"],
+    ["C++", "cplusplus/cplusplus-original.svg"],
+    ["C#", "csharp/csharp-original.svg"],
+  ],
+  "Front-end": [
+    ["HTML5", "html5/html5-original.svg"],
+    ["CSS3", "css3/css3-plain.svg"],
+    ["React", "react/react-original.svg"],
+    ["Next.js", "nextjs/nextjs-original.svg"],
+    ["Tailwind", "tailwindcss/tailwindcss-original.svg"],
+  ],
+  "Back-end & Data": [
+    ["Node.js", "nodejs/nodejs-original.svg"],
+    ["Flask", "flask", "shield"],
+    ["Spring", "spring/spring-original.svg"],
+    [".NET", "dot-net/dot-net-original.svg"],
+    ["MongoDB", "mongodb/mongodb-original.svg"],
+    ["MySQL", "mysql/mysql-original.svg"],
+    ["PostgreSQL", "postgresql/postgresql-original.svg"],
+  ],
+  "Other Tools": [
+    ["Docker", "docker/docker-original.svg"],
+    ["Git", "git/git-original.svg"],
+    ["Linux", "linux/linux-original.svg"],
+    ["Ubuntu", "ubuntu/ubuntu-plain.svg"],
+  ],
+};
+
+/* ================= BUILD TECH PICKER ================= */
+const techGroupsEl = document.getElementById("tech-groups");
+let selectedTech = ["javascript", "python", "react", "typescript", "nextjs", "nodejs", "ubuntu", "flask", "tailwindcss"];
+
+Object.entries(TECH).forEach(([group, items]) => {
+  const g = document.createElement("div");
+  g.innerHTML = `<div class="tech-group-title">${group}</div>`;
+  const grid = document.createElement("div");
+  grid.className = "tech-grid";
+  items.forEach(([name, icon]) => {
+    const d = document.createElement("div");
+    d.className = "tech-item";
+    d.title = name;
+    d.dataset.name = name.toLowerCase().replace(/[^a-z0-9]/g, "");
+    if (d.dataset.name.includes("c") && name === "C") d.dataset.name = "c";
+    if (selectedTech.includes(d.dataset.name)) d.classList.add("selected");
+    d.innerHTML = icon === "shield"
+      ? `<img src="${SHIELDS}Flask-000000?logo=flask&logoColor=white&style=for-the-badge" alt="${name}">`
+      : `<img src="${DEVICON}${icon}" alt="${name}">`;
+    d.onclick = () => {
+      d.classList.toggle("selected");
+      d.dataset.name === "flask" ? null : null;
+      render();
+    };
+    grid.appendChild(d);
+  });
+  g.appendChild(grid);
+  techGroupsEl.appendChild(g);
+});
+
+function getSelectedTech() {
+  return [...document.querySelectorAll(".tech-item.selected")].map(el => el.title);
+}
+
+/* ================= STATE ================= */
+const $ = id => document.getElementById(id);
+const inputs = ["name","tagline","working","learning","funfact","email","linkedin","twitter",
+  "github-user","discord","whatsapp","stats-user","ex-gif"];
+inputs.forEach(id => $(id).addEventListener("input", render));
+["st-langs","st-streak","st-trophy","st-activity","ex-visitor","ex-typing","ex-snake","ex-pacman"]
+  .forEach(id => $(id).addEventListener("change", render));
+
+/* collapsible sections */
+document.querySelectorAll(".section-header").forEach(btn => {
+  btn.onclick = () => btn.parentElement.classList.toggle("collapsed");
+});
+
+/* tabs */
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    const raw = btn.dataset.tab === "raw";
+    $("markdown-source").style.display = raw ? "block" : "none";
+    $("rendered").style.display = raw ? "none" : "block";
+  };
+});
+
+/* ================= GENERATOR ================= */
+function buildReadme() {
+  const name = $("name").value || "Your Name";
+  const tagline = $("tagline").value;
+  const working = $("working").value;
+  const learning = $("learning").value;
+  const funfact = $("funfact").value;
+  const email = $("email").value;
+  const linkedin = $("linkedin").value;
+  const twitter = $("twitter").value;
+  const gUser = $("github-user").value || "username";
+  const discord = $("discord").value;
+  const whatsapp = $("whatsapp").value;
+  const sUser = $("stats-user").value || gUser;
+  const gif = $("ex-gif").value.trim();
+
+  let md = "";
+
+  md += `# Hi there, I'm ${name}! 👋\n\n`;
+  if (tagline) md += `### ${tagline}\n\n`;
+  md += `#### 🔭 I'm currently working on ${working || "..."}.  \n`;
+  md += `🌱 I'm diving deeper into ${learning || "..."}.  \n`;
+  md += `⚡ Fun fact: ${funfact || "..."}\n\n`;
+  md += `---\n\n`;
+
+  /* Tech stack */
+  const tech = getSelectedTech();
+  if (tech.length) {
+    const imgs = tech.map(t => {
+      const key = t.toLowerCase().replace(/[^a-z0-9]/g, "");
+      if (t === "Flask") return `![](${SHIELDS}Flask-000000?logo=flask&logoColor=white&style=for-the-badge)`;
+      const entry = Object.values(TECH).flat().find(([n]) => n === t);
+      return entry ? `![](${DEVICON}${entry[1]})` : "";
+    }).filter(Boolean).join(" ");
+    md += `### 🛠️ Tech Stack\n\n`;
+    md += `##### 👩🏻‍💻 Tecnologias\n\n${imgs}\n\n`;
+    md += `---\n\n`;
+  }
+
+  /* Social badges */
+  const badges = [];
+  if (email) badges.push(`[![](${SHIELDS}Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:${email})`);
+  if (linkedin) badges.push(`[![](${SHIELDS}LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/${linkedin})`);
+  if (twitter) badges.push(`[![](${SHIELDS}X-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/${twitter.replace("@","")})`);
+  if (discord) badges.push(`[![](${SHIELDS}Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/users/${discord})`);
+  if (whatsapp) badges.push(`[![](${SHIELDS}WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/${whatsapp})`);
+  if (badges.length) {
+    md += badges.join(" ") + "\n\n---\n\n";
+  }
+
+  /* GIF */
+  if (gif) md += `[![gif](${gif})](${gif})\n\n---\n\n`;
+
+  /* Stats */
+  const theme = "dracula";
+  const stats = [];
+  if ($("st-langs").checked)
+    stats.push(`![](https://github-readme-stats.vercel.app/api/top-langs/?username=${sUser}&locale=en&hide_title=true&layout=compact&card_width=320&langs_count=5&theme=${theme}&hide_border=true)`);
+  if ($("st-streak").checked)
+    stats.push(`![](https://streak-stats.demolab.com?user=${sUser}&locale=en&mode=daily&theme=${theme}&hide_border=true)`);
+  if ($("st-trophy").checked)
+    stats.push(`![](https://github-profile-trophy.vercel.app/?username=${sUser}&theme=${theme}&no-frame=true&no-bg=true&margin-w=4)`);
+  if ($("st-activity").checked)
+    stats.push(`![](https://github-readme-activity-graph.vercel.app/graph?username=${sUser}&radius=16&theme=${theme}&area=true)`);
+  if (stats.length) {
+    md += stats.join("\n") + "\n\n---\n\n";
+  }
+
+  /* Extras */
+  if ($("ex-visitor").checked)
+    md += `[![](https://visitor-badge.laobi.icu/badge?page_id=${gUser}.${gUser})](https://visitor-badge.laobi.icu)\n\n`;
+  if ($("ex-typing").checked)
+    md += `[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=F75C7E&width=435&lines=${encodeURIComponent("I love coding and exploring new tech!")})](https://git.io/typing-svg)\n\n`;
+  if ($("ex-snake").checked)
+    md += `![Snake animation](https://raw.githubusercontent.com/${gUser}/${gUser}/output/snake.svg)\n\n`;
+  if ($("ex-pacman").checked)
+    md += `![Pacman graph](https://raw.githubusercontent.com/${gUser}/${gUser}/output/pacman-contribution-graph.svg)\n\n`;
+
+  return md;
+}
+
+/* ================= MINI MARKDOWN RENDERER ================= */
+function renderMd(src) {
+  const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  const lines = src.split("\n");
+  let html = "", inCode = false;
+  const inline = s => {
+    s = esc(s)
+      .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+      .replace(/`([^`]+)`/g, "<code>$1</code>");
+    return s;
+  };
+  for (let line of lines) {
+    if (line.trim().startsWith("```")) { html += inCode ? "</code></pre>" : "<pre><code>"; inCode = !inCode; continue; }
+    if (inCode) { html += esc(line) + "\n"; continue; }
+    if (line.startsWith("### ")) html += `<h3>${inline(line.slice(4))}</h3>`;
+    else if (line.startsWith("#### ")) html += `<h4>${inline(line.slice(5))}</h4>`;
+    else if (line.startsWith("##### ")) html += `<h5>${inline(line.slice(6))}</h5>`;
+    else if (line.startsWith("# ")) html += `<h1>${inline(line.slice(2))}</h1>`;
+    else if (line.trim() === "---") html += "<hr>";
+    else if (line.trim() === "") html += "<br>";
+    else html += `<p>${inline(line)}</p>`;
+  }
+  return html;
+}
+
+/* ================= RENDER ================= */
+function render() {
+  const md = buildReadme();
+  $("markdown-source").textContent = md;
+  $("rendered").innerHTML = renderMd(md);
+}
+render();
+
+/* ================= ACTIONS ================= */
+$("copy-btn").onclick = async () => {
+  await navigator.clipboard.writeText(buildReadme());
+  const t = $("toast");
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2000);
+};
+
+$("download-btn").onclick = () => {
+  const blob = new Blob([buildReadme()], { type: "text/markdown" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "README.md";
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+</script>
+</body>
+</html>

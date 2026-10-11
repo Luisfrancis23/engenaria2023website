@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="tet">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENGENHARIA 2023 — Harii Inovasaun, Harii Futuru</title>
+  <meta name="description" content="ENGENHARIA 2023 — Komunidade estudante engenharia. Inovasaun, teknolojia, atividade, projetu no kolaborasaun ba dezenvolvimentu Timor-Leste.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23f5a524'/%3E%3Cpath fill='%230a2540' d='M12 8.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5zm0 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM12 2l.9 1.8 2-.3.3 2 1.9.9-.3 2 1.8.9-1.8.9.3 2-1.9.9-.3 2-2-.3-.9 1.8-1.8-.9.3-2-1.8-.9 1.8-.9-.3-2 1.9-.9.3-2 2 .3z'/%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 + Font Awesome 6 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+  <!-- Estilo ENGENHARIA 2023 -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader" aria-hidden="true">
+    <i class="fa-solid fa-gears gear-spin"></i>
+    <div class="brand-pre">Engenharia 2023</div>
+    <div class="bar"><i></i></div>
+  </div>
+
+  <!-- Scroll progress -->
+  <div id="scrollProgress"></div>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar navbar-expand-lg navbar-eng">
+    <div class="container">
+      <a class="navbar-brand" href="#inisiu">
+        <span class="brand-mark"><i class="fa-solid fa-gears"></i></span>
+        <span class="brand-text">ENGENHARIA <span>2023</span></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarEng" aria-controls="navbarEng" aria-expanded="false" aria-label="Troka menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarEng">
+        <ul class="navbar-nav align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#inisiu">Inísiu</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#kona-ba-ami" id="aboutDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">Kona-ba Ami</a>
+            <ul class="dropdown-menu drop" aria-labelledby="aboutDrop">
+              <li><a class="dropdown-item" href="#kona-ba-ami">Kona-ba Ami</a></li>
+              <li><a class="dropdown-item" href="#vizaun">Vizaun</a></li>
+              <li><a class="dropdown-item" href="#misaun">Misaun</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#area-engenharia">Área Engenharia</a></li>
+          <li class="nav-item"><a class="nav-link" href="#atividade">Atividade</a></li>
+          <li class="nav-item"><a class="nav-link" href="galeria.html">Galeria</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projetu">Projetu</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ekipa">Ekipa</a></li>
+          <li class="nav-item"><a class="nav-link" href="#notisia">Notísia</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav" href="kontaktu.html">Kontaktu</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ============ 1. HOME / INÍSIO ============ -->
+    <section id="inisiu" class="hero">
+      <div class="hero-bg"></div>
+
+      <!-- Íkones flutuantes (teknolojia, konstrusaun, industria, inovasaun) -->
+      <div class="hero-float float-anim" style="top:22%; left:6%;"><i class="fa-solid fa-microchip" style="font-size:54px;"></i></div>
+      <div class="hero-float float-anim d2" style="top:58%; left:11%;"><i class="fa-solid fa-industry" style="font-size:44px;"></i></div>
+      <div class="hero-float float-anim d3" style="top:30%; right:24%;"><i class="fa-solid fa-robot" style="font-size:48px;"></i></div>
+      <div class="hero-float float-anim d4" style="top:64%; right:9%;"><i class="fa-solid fa-mountain" style="font-size:40px;"></i></div>
+      <div class="hero-gears"><span class="g1 fa-solid fa-gear"></span><span class="g2 fa-solid fa-gear"></span></div>
+
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <span class="hero-badge reveal visible"><i class="fa-solid fa-gear"></i> Komunidade Estudante Engenharia</span>
+            <h1 class="reveal visible" style="transition-delay:.1s">ENGENHARIA <span class="hl">2023</span></h1>
+            <p class="hero-tagline reveal visible" style="transition-delay:.2s"><b>Harii Inovasaun,</b> Harii Futuru</p>
+            <p class="hero-desc reveal visible" style="transition-delay:.3s">
+              Engenharia 2023 mak organizasaun estudante ne'ebé juntu estudante engenharia hosi área diferente —
+              Informátika, Industrial, Petrolíferu no Geologia — atu harii inovasaun, teknolojia no
+              kontribui ba dezenvolvimentu sustentável Timor-Leste.
+            </p>
+            <div class="d-flex flex-wrap gap-3 reveal visible" style="transition-delay:.4s">
+              <a href="#atividade" class="btn btn-accent"><i class="fa-solid fa-bolt"></i> Haree Atividade Sira</a>
+              <a href="galeria.html" class="btn btn-outline-hero"><i class="fa-solid fa-images"></i> Haree Galeria</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-ind">
+        <div class="mouse"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- Stats strip -->
+    <div class="container stats-strip">
+      <div class="row g-4">
+        <div class="col-6 col-lg-3 reveal">
+          <div class="stats-card">
+            <span class="ic"><i class="fa-solid fa-user-graduate"></i></span>
+            <div class="num stats-num" data-count="500" data-suffix="+">0<i></i></div>
+            <div class="lbl">Estudante Ativu</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 reveal" style="transition-delay:.1s">
+          <div class="stats-card">
+            <span class="ic"><i class="fa-solid fa-calendar-check"></i></span>
+            <div class="num stats-num" data-count="120" data-suffix="+">0<i></i></div>
+            <div class="lbl">Atividade Realiza</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 reveal" style="transition-delay:.2s">
+          <div class="stats-card">
+            <span class="ic"><i class="fa-solid fa-diagram-project"></i></span>
+            <div class="num stats-num" data-count="45" data-suffix="+">0<i></i></div>
+            <div class="lbl">Projetu Desenvolve</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 reveal" style="transition-delay:.3s">
+          <div class="stats-card">
+            <span class="ic"><i class="fa-solid fa-handshake"></i></span>
+            <div class="num stats-num" data-count="20" data-suffix="+">0<i></i></div>
+            <div class="lbl">Parceiru Institusaun</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 2. KONA-BA AMI ============ -->
+    <section id="kona-ba-ami" class="section">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 reveal rv-left">
+            <div class="about-collage">
+              <div class="img-main">
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80"
+                     alt="Estudante engenharia"
+                     onerror="this.onerror=null;this.src='https://picsum.photos/seed/about-main/900/960'">
+              </div>
+              <div class="img-sub">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
+                     alt="Estudante hamutuk"
+                     onerror="this.onerror=null;this.src='https://picsum.photos/seed/about-sub/600/400'">
+              </div>
+              <div class="about-badge">
+                <span class="yr">2023</span>
+                <span class="tx">Fundasaun</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 reveal rv-right">
+            <span class="sec-eyebrow">Kona-ba Ami</span>
+            <h2 class="sec-title">Hadia-Malu <span class="ac">Hodi Harii Futuru</span></h2>
+            <p>
+              <strong>Engenharia 2023</strong> mak komunitade estudante engenharia ne'ebé ativa, inovadora no
+              responsabel. Ami juntu estudante hosi area Engenharia hotu —Informátika, Industrial,
+              Petrolíferu no Geologia— ba hatene, praktika no inovasaun.
+            </p>
+            <p>
+              Ami cre que estudante engenharia iha papel sentral ba dezenvolvimentu nasionál. Ho koñesimentu
+              tékniku, espírito lideransa no servisu hamutuk, ami bele transforma desafiu ba oportunidade —
+              ba universidade, ba industria no ba komunidade tomak.
+            </p>
+            <ul class="about-list">
+              <li>
+                <span class="ic"><i class="fa-solid fa-bullseye"></i></span>
+                <div>
+                  <h5>Objetivu Klaru</h5>
+                  <p>Forma estudante engenharia kompetente, inovador no responsabel ba sokiedade.</p>
+                </div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-lightbulb"></i></span>
+                <div>
+                  <h5>Espírito Inovasaun no Kreatividade</h5>
+                  <p>Enkoraja idea foun, eksperiénsia no solusaun kreativu ba problemu real.</p>
+                </div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-users-gear"></i></span>
+                <div>
+                  <h5>Lideransa no Servisu Hamutuk</h5>
+                  <p>Desenvolve lideransa no trabalhu equipa — karakter importante ba enjeñeiro.</p>
+                </div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-arrows-rotate"></i></span>
+                <div>
+                  <h5>Kolaborasaun entre Área Diferente</h5>
+                  <p>Estudante Informátika, Industrial, Petrolíferu no Geologia servisu hamutuk.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. VIZAUN ============ -->
+    <section id="vizaun" class="vision-band">
+      <div class="container py-5">
+        <div class="vision-inner reveal">
+          <span class="vision-tag"><i class="fa-solid fa-eye" style="margin-right:8px;"></i>Vizaun</span>
+          <div class="quote-mark">“</div>
+          <p class="vision-text">
+            “Sai <strong>komunidade Engenharia</strong> ida ne'ebé ativa, inovadora, responsavel no iha
+            <strong>integridade</strong>, ne'ebé bele kontribui ba <strong>dezenvolvimentu teknolojia</strong>
+            no <strong>dezenvolvimentu sustentável</strong>.”
+          </p>
+          <div class="vision-pillars">
+            <span><i class="fa-solid fa-bolt"></i> Ativa</span>
+            <span><i class="fa-solid fa-lightbulb"></i> Inovadora</span>
+            <span><i class="fa-solid fa-shield-halved"></i> Responsavel</span>
+            <span><i class="fa-solid fa-award"></i> Integridade</span>
+            <span><i class="fa-solid fa-leaf"></i> Sustentável</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. MISAUN ============ -->
+    <section id="misaun" class="section bg-soft">
+      <div class="container">
+        <div class="sec-head center reveal">
+          <span class="sec-eyebrow">Misaun</span>
+          <h2 class="sec-title">No <span class="ac">Ne'ebé Ami Halo</span></h2>
+          <p class="sec-sub">Sete pontu misaun ne'ebé guia kada atividade no decisão iha Engenharia 2023.</p>
+        </div>
+        <div class="mission-grid">
+          <div class="mission-item reveal"><span class="mission-num">01</span><div><h4>Hasa'e Koñesimentu no Kapasidade</h4><p>Forma estudante engenharia ho koñesimentu tékniku, praktika no kapasidade profissional ne'ebé bele kompete iha merkadu global.</p></div></div>
+          <div class="mission-item reveal" style="transition-delay:.08s"><span class="mission-num">02</span><div><h4>Enkoraja Inovasaun no Kreatividade</h4><p>Kria ambiente ne'ebé stimula idea foun, eksperiénsia no solusaun inovadora ba desafiu real.</p></div></div>
+          <div class="mission-item reveal" style="transition-delay:.12s"><span class="mission-num">03</span><div><h4>Harii Kooperasaun entre Estudante</h4><p>Promove trabalhu hamutuk, partilha koñesimentu no aprendizajen kolaborativa entre estudante sira.</p></div></div>
+          <div class="mission-item reveal" style="transition-delay:.16s"><span class="mission-num">04</span><div><h4>Organiza Semináriu, Workshop no Formasaun</h4><p>Realiza eventu akademiku, formasaun téknika no workshop prátiku ba desenvolvimentu kapasidade.</p></div></div>
+          <div class="mission-item reveal" style="transition-delay:.2s"><span class="mission-num">05</span><div><h4>Enkoraja Servisu ba Komunidade</h4><p>Mobiliza estudante atu servisu no kontribui ba komunidade — aplica enjenharia ba benefísio sokiedade.</p></div></div>
+          <div class="mission-item reveal" style="transition-delay:.24s"><span class="mission-num">06</span><div><h4>Apoia Dezenvolvimentu Teknolojia</h4><p>Apoia adotasaun teknolojia foun, investigasaun no digitalizasaun ba progresu nasionál.</p></div></div>
+          <div class="mission-item reveal" style="transition-delay:.28s"><span class="mission-num">07</span><div><h4>Promove Dezenvolvimentu Sustentável</h4><p>Promove utilizasaun rekursu naturál ho responsabilidade no proteksaun ambiente ba futuru geraçaun.</p></div></div>
+          <div class="mission-item reveal" style="transition-delay:.32s; background:linear-gradient(135deg, rgba(46,134,222,.07), rgba(245,165,36,.08)); border-color:transparent;">
+            <span class="mission-num" style="background:linear-gradient(135deg, var(--accent), #ffc153); color:var(--navy-900);"><i class="fa-solid fa-infinity"></i></span>
+            <div><h4>Kompromisu Kontinuu</h4><p>Misaun ne'e prosesu kontinuu — kada tinan, kada atividade, kada estudante mak parte husi jornadu ne'ebá.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. ÁREA ENGENHARIA ============ -->
+    <section id="area-engenharia" class="section">
+      <div class="sec-dots" style="top:40px; right:-60px;"></div>
+      <div class="container">
+        <div class="sec-head center reveal">
+          <span class="sec-eyebrow">Área Engenharia</span>
+          <h2 class="sec-title">Área <span class="ac">Engenharia Sira</span></h2>
+          <p class="sec-sub">Estudante hosi área diferente, visiun ida. Konhese área hotu ne'ebé forma Engenharia 2023.</p>
+        </div>
+        <div class="row g-4" id="areaGrid">
+          <!-- Renderizado por JavaScript (komponente reutilizável) -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. ATIVIDADE SIRA ============ -->
+    <section id="atividade" class="section bg-soft">
+      <div class="container">
+        <div class="sec-head center reveal">
+          <span class="sec-eyebrow">Atividade Sira</span>
+          <h2 class="sec-title">Atividade <span class="ac">Engenharia 2023</span></h2>
+          <p class="sec-sub">Semináriu, workshop, formasaun, kompetisaun no servisu komunidade — bele filtra tuir kategoria.</p>
+        </div>
+        <div class="filter-bar reveal" id="actFilters"></div>
+        <div class="row g-4" id="actGrid">
+          <!-- Renderizado por JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 8. PROJETU ENGENHARIA ============ -->
+    <section id="projetu" class="section">
+      <div class="container">
+        <div class="sec-head center reveal">
+          <span class="sec-eyebrow">Projetu Engenharia</span>
+          <h2 class="sec-title">Projetu <span class="ac">Estudante Sira</span></h2>
+          <p class="sec-sub">Projetu real dezenvolvido ho estudante — aplica koñesimentu ba solusaun ba problemu real.</p>
+        </div>
+        <div class="row g-4" id="projGrid">
+          <!-- Renderizado por JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 9. TIMELINE ATIVIDADE ============ -->
+    <section id="timeline" class="section bg-soft">
+      <div class="container">
+        <div class="sec-head center reveal">
+          <span class="sec-eyebrow">Timeline</span>
+          <h2 class="sec-title">Istória no <span class="ac">Progresu</span></h2>
+          <p class="sec-sub">Hosi fundasaun 2023 atu futuru — cada tinan mak passo importante iha jornadu Engenharia 2023.</p>
+        </div>
+        <div class="timeline">
+          <div class="tl-item reveal rv-left"><span class="tl-dot"></span><div class="tl-card"><span class="tl-year">2023</span><h4>Inísiu Engenharia 2023</h4><p>Fundasaun oficial ENGENHARIA 2023 ho 45 estudante pioneer — visiun klaru: harii inovasaun, harii futuru.</p></div></div>
+          <div class="tl-item reveal rv-right"><span class="tl-dot"></span><div class="tl-card"><span class="tl-year">2024</span><h4>Atividade Akademika</h4><p>Primeiru semináriu, workshop no enkontru estudante — base edukasaun no kooperasaun hatama.</p></div></div>
+          <div class="tl-item reveal rv-left"><span class="tl-dot"></span><div class="tl-card"><span class="tl-year">2025</span><h4>Workshop no Atividade Komunidade</h4><p>Expansion: kompetisaun robotika, servisu komunidade no parceria industria — impactu real ba sokidade.</p></div></div>
+          <div class="tl-item reveal rv-right"><span class="tl-dot"></span><div class="tl-card"><span class="tl-year">2026</span><h4>Inovasaun no Kolaborasaun</h4><p>Projetu inovasaun, kolaborasaun internasional no dezenvolvimentu sustentável — futuru ne'ebé harii hamutuk.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 10. EKIPA / MEMBRU SIRAH === -->
+    <section id="ekipa" class="section">
+      <div class="container">
+        <div class="sec-head center reveal">
+          <span class="sec-eyebrow">Ekipa</span>
+          <h2 class="sec-title">Ekipa no <span class="ac">Membru Sira</span></h2>
+          <p class="sec-sub">Lideransa, koordenadór área no komisaun — hamutuk harii Engenharia 2023.</p>
+        </div>
+        <div class="row g-4" id="teamGrid">
+          <!-- Renderizado por JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 11. NOTÍSIA NO AVISU ============ -->
+    <section id="notisia" class="section bg-soft">
+      <div class="container">
+        <div class="sec-head center reveal">
+          <span class="sec-eyebrow">Notísia no Avisu</span>
+          <h2 class="sec-title">Notísia <span class="ac">no Avisu</span></h2>
+          <p class="sec-sub">Eventu sei mai, konquista estudante, avisu importante no atualizasaun projetu.</p>
+        </div>
+        <div class="row g-4" id="newsGrid">
+          <!-- Renderizado por JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="section" style="padding-top:0;">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div class="container">
+            <h2>Hakarak halo parte husi <span style="color:var(--accent);">ENGENHARIA 2023</span>?</h2>
+            <p>Juntu hamutuk atu harii inovasaun no harii futuru. Kontaktu ami ou haree atividade ne'ebé sei mai.</p>
+            <div class="d-flex flex-wrap gap-3 justify-content-center">
+              <a href="kontaktu.html" class="btn btn-accent"><i class="fa-solid fa-paper-plane"></i> Kontaktu Ami</a>
+              <a href="#atividade" class="btn btn-outline-hero"><i class="fa-regular fa-calendar"></i> Haree Atividade</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ 13. FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="brand">
+            <span class="brand-mark"><i class="fa-solid fa-gears"></i></span>
+            ENGENHARIA <span style="color:var(--accent);">2023</span>
+          </div>
+          <p>Komunidade estudante engenharia ne'ebé ativa, inovadora no responsabel — kontribui ba dezenvolvimentu teknolojia no dezenvolvimentu sustentável iha Timor-Leste.</p>
+          <div class="footer-socials">
+            <a href="javascript:void(0)" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="javascript:void(0)" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="javascript:void(0)" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="javascript:void(0)" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="javascript:void(0)" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5>Menu</h5>
+          <ul class="footer-links">
+            <li><a href="#inisiu"><i class="fa-solid fa-circle"></i>Inísiu</a></li>
+            <li><a href="#kona-ba-ami"><i class="fa-solid fa-circle"></i>Kona-ba Ami</a></li>
+            <li><a href="#vizaun"><i class="fa-solid fa-circle"></i>Vizaun</a></li>
+            <li><a href="#misaun"><i class="fa-solid fa-circle"></i>Misaun</a></li>
+            <li><a href="#area-engenharia"><i class="fa-solid fa-circle"></i>Área Engenharia</a></li>
+            <li><a href="#atividade"><i class="fa-solid fa-circle"></i>Atividade</a></li>
+            <li><a href="galeria.html"><i class="fa-solid fa-circle"></i>Galeria</a></li>
+            <li><a href="#projetu"><i class="fa-solid fa-circle"></i>Projetu</a></li>
+            <li><a href="kontaktu.html"><i class="fa-solid fa-circle"></i>Kontaktu</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h5>Área</h5>
+          <ul class="footer-links">
+            <li><a href="#area-engenharia"><i class="fa-solid fa-circle"></i>Informátika</a></li>
+            <li><a href="#area-engenharia"><i class="fa-solid fa-circle"></i>Industrial</a></li>
+            <li><a href="#area-engenharia"><i class="fa-solid fa-circle"></i>Petrolíferu</a></li>
+            <li><a href="#area-engenharia"><i class="fa-solid fa-circle"></i>Geologia</a></li>
+            <li><a href="#ekipa"><i class="fa-solid fa-circle"></i>Ekipa</a></li>
+            <li><a href="#notisia"><i class="fa-solid fa-circle"></i>Notísia</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5>Kontaktu</h5>
+          <ul class="footer-contact">
+            <li><i class="fa-solid fa-location-dot"></i><span>Avenida de Portugal, Dili, Timor-Leste</span></li>
+            <li><i class="fa-solid fa-envelope"></i><a href="mailto:info@engenharia2023.tl">info@engenharia2023.tl</a></li>
+            <li><i class="fa-solid fa-phone"></i><a href="tel:+670712345678">+670 712 345 678</a></li>
+            <li><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/670712345678" target="_blank" rel="noopener">+670 712 345 678</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © <span id="yearNow">2026</span> <b>Engenharia 2023</b>. Direitu Hotu Rezervadu.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="backTop" aria-label="Baa lalais"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- Toast container -->
+  <div id="toastWrap"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

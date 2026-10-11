@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tet">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeria — ENGENHARIA 2023</title>
+  <meta name="description" content="Galeria foto atividade Engenharia 2023 — semináriu, workshop, projetu engenharia no servisu komunidade.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23f5a524'/%3E%3Cpath fill='%230a2540' d='M12 8.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5zm0 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="preloader" aria-hidden="true">
+    <i class="fa-solid fa-gears gear-spin"></i>
+    <div class="brand-pre">Engenharia 2023</div>
+    <div class="bar"><i></i></div>
+  </div>
+  <div id="scrollProgress"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-eng">
+    <div class="container">
+      <a class="navbar-brand" href="index.html#inisiu">
+        <span class="brand-mark"><i class="fa-solid fa-gears"></i></span>
+        <span class="brand-text">ENGENHARIA <span>2023</span></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarEng" aria-controls="navbarEng" aria-expanded="false" aria-label="Troka menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarEng">
+        <ul class="navbar-nav align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html#inisiu">Inísiu</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#kona-ba-ami">Kona-ba Ami</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#area-engenharia">Área</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#atividade">Atividade</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#projetu">Projetu</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#ekipa">Ekipa</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#notisia">Notísia</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav" href="kontaktu.html">Kontaktu</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="ph-bg"></div>
+    <div class="container">
+      <nav class="crumb" aria-label="breadcrumb">
+        <a href="index.html#inisiu"><i class="fa-solid fa-house" style="margin-right:6px;"></i>Inísiu</a>
+        <i class="fa-solid fa-chevron-right" style="font-size:.65rem;"></i>
+        <span>Galeria</span>
+      </nav>
+      <h1>Galeria <span style="color:var(--accent);">Foto</span></h1>
+      <p>Momentu importante husi atividade Engenharia 2023 — semináriu, workshop, projetu engenharia, servisu komunidade no eventu estudante. Klika foto atu haree detail iha lightbox.</p>
+    </div>
+  </header>
+
+  <!-- GALERIA -->
+  <section class="section" style="padding-top:84px;">
+    <div class="container">
+      <div class="filter-bar" id="galFilters">
+        <!-- Renderizado por JavaScript -->
+      </div>
+      <div class="gallery-grid" id="galGrid">
+        <!-- Renderizado por JavaScript -->
+      </div>
+      <p class="text-center mt-5 mb-0" style="color:var(--gray-400); font-size:.88rem;">
+        <i class="fa-solid fa-circle-info" style="margin-right:8px; color:var(--accent);"></i>
+        Klika iha foto atu loke iha lightbox — bele navega ho seta keyboard (← →) no serbi ho ESC.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="brand">
+            <span class="brand-mark"><i class="fa-solid fa-gears"></i></span>
+            ENGENHARIA <span style="color:var(--accent);">2023</span>
+          </div>
+          <p>Komunidade estudante engenharia ne'ebé ativa, inovadora no responsabel — kontribui ba dezenvolvimentu teknolojia no dezenvolvimentu sustentável iha Timor-Leste.</p>
+          <div class="footer-socials">
+            <a href="javascript:void(0)" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="javascript:void(0)" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="javascript:void(0)" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="javascript:void(0)" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="javascript:void(0)" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5>Menu</h5>
+          <ul class="footer-links">
+            <li><a href="index.html#inisiu"><i class="fa-solid fa-circle"></i>Inísiu</a></li>
+            <li><a href="index.html#kona-ba-ami"><i class="fa-solid fa-circle"></i>Kona-ba Ami</a></li>
+            <li><a href="index.html#vizaun"><i class="fa-solid fa-circle"></i>Vizaun</a></li>
+            <li><a href="index.html#misaun"><i class="fa-solid fa-circle"></i>Misaun</a></li>
+            <li><a href="index.html#area-engenharia"><i class="fa-solid fa-circle"></i>Área Engenharia</a></li>
+            <li><a href="index.html#atividade"><i class="fa-solid fa-circle"></i>Atividade</a></li>
+            <li><a href="galeria.html"><i class="fa-solid fa-circle"></i>Galeria</a></li>
+            <li><a href="index.html#projetu"><i class="fa-solid fa-circle"></i>Projetu</a></li>
+            <li><a href="kontaktu.html"><i class="fa-solid fa-circle"></i>Kontaktu</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h5>Área</h5>
+          <ul class="footer-links">
+            <li><a href="index.html#area-engenharia"><i class="fa-solid fa-circle"></i>Informátika</a></li>
+            <li><a href="index.html#area-engenharia"><i class="fa-solid fa-circle"></i>Industrial</a></li>
+            <li><a href="index.html#area-engenharia"><i class="fa-solid fa-circle"></i>Petrolíferu</a></li>
+            <li><a href="index.html#area-engenharia"><i class="fa-solid fa-circle"></i>Geologia</a></li>
+            <li><a href="index.html#ekipa"><i class="fa-solid fa-circle"></i>Ekipa</a></li>
+            <li><a href="index.html#notisia"><i class="fa-solid fa-circle"></i>Notísia</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5>Kontaktu</h5>
+          <ul class="footer-contact">
+            <li><i class="fa-solid fa-location-dot"></i><span>Avenida de Portugal, Dili, Timor-Leste</span></li>
+            <li><i class="fa-solid fa-envelope"></i><a href="mailto:info@engenharia2023.tl">info@engenharia2023.tl</a></li>
+            <li><i class="fa-solid fa-phone"></i><a href="tel:+670712345678">+670 712 345 678</a></li>
+            <li><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/670712345678" target="_blank" rel="noopener">+670 712 345 678</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © <span id="yearNow">2026</span> <b>Engenharia 2023</b>. Direitu Hotu Rezervadu.
+      </div>
+    </div>
+  </footer>
+
+  <button id="backTop" aria-label="Baa lalais"><i class="fa-solid fa-arrow-up"></i></button>
+  <div id="toastWrap"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/gallery.js"></script>
+</body>
+</html>
